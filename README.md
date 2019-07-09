@@ -16,11 +16,43 @@ Write 3 different ways of safely unwrapping and printing the value of `userName`
 - Method three: Nil coalescing
 
 
+```
+// example 1
+var userName: String?
+userName = "No name"
+print(userName!)
+// example 2
+var userName: String?
+userName = "No name"
+
+if let newName = userName{
+print(newName)
+}
+else {
+print("userName is nil")
+}
+// example 3
+```
+
 ## Question 2
 
 Given optional string `backgroundColor`, write code that safely unwraps and prints it. If backgroundColor is nil, give it a value.
 
 `var backgroundColor: String?`
+
+```
+var backgroundColor: String?
+backgroundColor = "blue"
+
+if let backDrop = backgroundColor {
+print(backDrop)
+}
+
+else {
+print ("background color is needed")
+}
+
+```
 
 
 ## Question 3
@@ -30,6 +62,21 @@ Given an optional width and an optional height of a rectangle, write code that c
 ```swift
 var width: Double?
 var height: Double?
+```
+```
+var width: Double?
+var height: Double?
+width = 5
+height = 10
+
+if let unwrappedWidth = width {
+if let openHeight = height {
+print(unwrappedWidth * openHeight)
+}
+}
+else{
+print("unknown values")
+}
 ```
 
 
@@ -41,6 +88,26 @@ Given the following optional variables `name`, `age` and `height`. Write code so
 var name: String?
 var age: Int?
 var height: Double?
+
+```
+```
+var name: String?
+var age: Int?
+var height: Double?
+name = "john"
+age = 31
+height = 6.1
+
+if let unwrappedname = name {
+if let unwrapAge = age {
+if let unwrapHeight = height{
+print("\(unwrappedname), \(unwrapAge), \(unwrapHeight) ")
+}
+}
+}
+else {
+print("user not found")
+}
 ```
 
 
@@ -53,6 +120,17 @@ var firstName: String = "Johnny"
 var middleName: String?
 var lastName: String = "Stone"
 ```
+```
+var firstName: String = "Johnny"
+var middleName: String?
+var lastName: String = "Stone"
+middleName = "Peach"
+
+var fullName = ("\(firstName)" + " " + "\(middleName!)" + " " + "\(lastName)")
+
+
+print("Hi my name is \(fullName)")
+```
 
 
 ## Question 6
@@ -60,6 +138,15 @@ var lastName: String = "Stone"
 Write code that adds 15 to `myIntString`, then prints the sum. Use the `Int()` constructor which returns an optional Int `(Int?)`.
 
 `let myIntString = "35"`
+
+```
+let myIntString = "35"
+
+if let numericalString = Int (myIntString) {
+var newInt: Int? = numericalString + 15
+print(newInt)
+}
+```
 
 
 ## Question 7
@@ -72,6 +159,36 @@ var scores: (Int?, Int?, Int?)?
 var testCaseOne = (4, nil, 7)
 var testCaseTwo = (nil, nil, 9)
 var testCaseThree = (5, 10, 24)
+
+
+```
+```
+var scores: (Int?, Int?, Int?)?
+
+var testCaseOne: (Int?, Int?, Int?)? = (4, nil, 7)
+var testCaseTwo: (Int?, Int?, Int?)? = (nil, nil, 9)
+var testCaseThree: (Int?, Int?, Int?)? = (5, 10, 24)
+
+let testCases = [testCaseOne, testCaseTwo, testCaseThree]
+
+for tCase in testCases {
+var sum = 0
+if let currentCase = tCase {
+if let num1 = currentCase.0 {
+sum += num1
+}
+if let num2 = currentCase.1 {
+sum += num2
+}
+if let num3 = currentCase.2 {
+sum += num3
+}
+print(sum)
+}
+}
+
+
+
 ```
 
 
@@ -85,6 +202,15 @@ if Bool.random() {
  tuple = (5, 3)
 }
 ```
+```
+var tuple: (Int, Int)?
+if Bool.random() {
+tuple = (5, 3)
+if let openTuple = tuple {
+print(openTuple)
+}
+}
+```
 
 
 ## Question 9
@@ -95,6 +221,19 @@ Write code that either doubles `myInt` and then prints it, or prints an error me
 let myInt: Int?
 if Bool.random() {
  myInt = 5
+}
+```
+```
+let myInt: Int?
+if Bool.random() {
+myInt = 5
+if let openMyInt = myInt {
+var doubledInt = openMyInt * 2
+print(doubledInt)
+}
+}
+else{
+print("unit could not be found")
 }
 ```
 
@@ -111,6 +250,20 @@ if Bool.random() {
  myDouble = 12
 }
 ```
+```
+var myDouble: Double?
+let doubleTwo: Double = 5
+
+if Bool.random() {
+myDouble = 12
+if let product = myDouble {
+print(product * doubleTwo )
+}
+}
+else {
+print("doesnt not compute")
+}
+```
 
 
 ## Question 11
@@ -123,6 +276,15 @@ var isTheGreatest: Bool?
 if Bool.random() {
  isTheGreatest = true
 }
+```
+```
+var isTheGreatest: Bool?
+isTheGreatest = false
+
+if Bool.random() {
+isTheGreatest = true
+}
+print(isTheGreatest)
 ```
 
 
@@ -140,6 +302,26 @@ if Bool.random() {
  myTuple.1 = 9
  myTuple.3 = 10
 }
+```
+```
+var myTuple: (Int?, Int?, Int?, Int?)
+
+if Bool.random() {
+myTuple.0 = 5
+myTuple.2 = 14
+
+} else {
+myTuple.1 = 9
+myTuple.3 = 10
+}
+let a = myTuple.0 ?? 0
+let b = myTuple.1 ?? 0
+let c = myTuple.2 ?? 0
+let d = myTuple.3 ?? 0
+
+let sum = a + b + c + d
+
+print(sum)
 ```
 
 
@@ -208,6 +390,23 @@ if Bool.random() {
  numberOfPeople = 108
 }
 ```
+```
+// code does not run
+var numberOfPeople: Int?
+
+if Bool.random() {
+numberOfPeople = 108
+if numberOfPeople % 2 == 0{
+if let evenPeople = numberOfPeople{
+print(evenPeople)
+}
+}
+else{
+print("no personnel")
+}
+}
+```
+
 
 
 ## Question 15
@@ -231,6 +430,16 @@ Given the array `poorlyFormattedCityNames`, create a new array with the city nam
 let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago", nil, "los angeles", nil, "Dallas",]
 
 Output: ["New York", "Boston", "Chicago", "Los Angeles", "Dallas"]
+```
+```
+let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago", nil, "los angeles", nil, "Dallas",]
+
+for usCities in poorlyFormattedCityNames{
+if let kindaFormattedCities = usCities  {
+var formattedCities = [kindaFormattedCities.uppercased()]
+print(formattedCities)
+}
+}
 ```
 
 
